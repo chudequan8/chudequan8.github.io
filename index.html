@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>my gallary</title>
+	<link rel="stylesheet" href="css/main.css">
+</head>
+<body onselectstart="return false" ondragstart="return false">
+	<div class="wrap" id="wrap"></div>
+	<script src="js/gallary.min.js"></script>
+	<script>
+		/*
+		 * 初始化构造函数
+		 * params: 图片排列方式	
+		 * 1.annular: 环形排列	
+		 * 2.random: 随机排列	
+		 */
+		var myGallary = new Gallary();
+		myGallary.init('annular');
+	</script>
+</body>
+</html>
