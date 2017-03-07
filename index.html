@@ -2,22 +2,340 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	<title>my Gallery</title>
-	<link rel="stylesheet" href="dist/css/main.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+	<title>home page</title>
+	<link rel="stylesheet" href="css/font-awesome.css">
+	<link rel="stylesheet" href="css/normalize.css">
+	<style>
+		html {
+			font-size: 62.5%;	/*1rem = 10px*/
+			min-height: 100%;
+		}
+		body {
+			line-height: 1.5;
+			color: #343434;
+			background-color: #999;
+		}
+		input {
+			box-sizing: border-box;
+			outline: none;
+			padding: 0;
+		}
+		ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+		p {
+			margin: 0;
+		}
+		.fa {
+			color: #7b7b7b;
+		}
+		a {
+			text-decoration: none;
+		}
+		a>img {
+			vertical-align: bottom;
+		}
+
+		.topbar {
+			display: flex;
+			box-sizing: border-box;
+			width: 100%;
+			height: 8.4rem;
+			padding: 0 2.4rem;
+			align-items: center;
+			justify-content: space-between;
+			font-size: 4.4rem;
+			line-height: 4.4rem;
+			background-color: #fff;
+			border-bottom: 1px solid #ccc;
+		}
+
+		.logo img {
+			height: 4.4rem;
+			vertical-align: bottom;
+		}
+		.nav_menu, .shopping_cart {
+			display: block;
+			width: 4.6rem;
+			height: 4.4rem;
+			text-align: center;
+		}
+		.search_box {
+			display: flex;
+			width: 90%;
+			height: 6.6rem;
+			margin: 1.8rem auto;
+			padding: 0 2rem;
+			align-items: center;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			background-color: #fff;
+		}
+		.search_input {
+			display: inline-block;
+			border: none;
+			flex-grow: 13;
+			font-size: 24px;
+			line-height: 1.5;
+		}
+		.search_icon {
+			display: inline-block;
+			width: 4.6rem;
+			font-size: 4.4rem;
+			line-height: 4.4rem;
+			text-align: right;
+		}
+		
+		.slider {
+			position: relative;
+			margin-bottom: 1.8rem;
+		}
+		.slider ul {
+			overflow: hidden;
+		}
+		.slider_item {
+			font-size: 0;
+		}
+		.slider_item img {
+			width: 100%;
+			height: 30.4rem;
+			vertical-align: bottom;
+		}
+		.slider_controller {
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			line-height: 3.4rem;
+			text-align: center;
+		}
+		.slider_dot {
+			display: inline-block;
+			vertical-align: middle;
+			width: 1.4rem;
+			height: 1.4rem;
+			border-radius: 50%;
+			background-color: #fff;
+		}
+		.slider_dot.on {
+			background-color: #c82a2e;
+		}
+
+		nav, .recommend {
+			width: 100%;
+			margin-bottom: 1.8rem;
+		}
+		.nav_header, .recommend_header {
+			position: relative;
+			padding: 2.6rem 1.8rem;
+			background-color: #fff;
+		}
+		.nav_title, .recommend_title {
+			position: relative;
+			font-size: 3.2rem;
+			padding-left: 6rem;
+		}
+		.categories_icon, .pop_icon {
+			position: absolute;
+			left: 0;
+			width: 4.8rem;
+			height: 4.8rem;
+		}
+		.categories_icon {
+			background: url(images/categories-icon.png) no-repeat center;
+		}
+		.pop_icon {
+			background: url(images/pop-icon.png) no-repeat center;
+		}
+		.more_categories {
+			position: absolute;
+			top: 0.2rem;
+			right: 3.4rem;
+			display: block;
+			box-sizing: border-box;
+			width: 4.4rem;
+			height: 4.4rem;
+			border: 0.3rem solid #7b7b7b;
+			border-radius: 50%;
+			text-align: center;
+			font-size: 2.4rem;
+			line-height: 4rem;
+		}
+		.more_categories .fa {
+			font-weight: bold;
+		}
+		.nav_content {
+			padding-top: 0.2rem;
+			background-color: #999;
+		}
+		.categories_list {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 1.8rem;
+		}
+		.categories_list .normal {
+			width: 18.6rem;
+			height: 14.0rem;
+		}
+		.categories_list .pop {
+			width: 23.8rem;
+			height: 29.4rem;
+		}
+		.categories_item img {
+			width: 100%;
+			height: 100%;
+		}
+
+
+		.recommend_header {
+			margin-bottom: 1.8rem;
+		}
+		.recommend_content {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+		.content_list {
+			width: 36.5rem;
+			background-color: #fff;
+		}
+		.product_info {
+			font-size: 2.4rem;
+			padding: 0 1.8rem;
+		}
+
+		.product_name {
+			color: #343434;
+		}
+		.price .now_price {
+			color: #c82a2e;
+		}
+		.price .old_price {
+			color: #7b7b7b;
+			text-decoration: line-through;
+		}
+
+
+	</style>
 </head>
-<body onselectstart="return false" ondragstart="return false">
-	<div class="wrap" id="wrap"></div>
-	<script src="dist/js/gallery.min.js"></script>
-	<script>
-		/*
-		 * 初始化构造函数
-		 * params: 图片排列方式	
-		 * 1.annular: 环形排列	
-		 * 2.random: 随机排列	
-		 */
-		var myGallery = new Gallery();
-		myGallery.init('annular');
-	</script>
+<body>
+	<header class="topbar">
+		<span class="nav_menu"><i class="fa fa-navicon"></i></span>
+		<a href="##" class="logo"><img src="images/logo.png" alt=""></a>
+		<span class="shopping_cart"><i class="fa fa-shopping-cart"></i></span>
+	</header>
+	<div class="container">
+		<form>
+			<div class="search_box">
+				<input type="text" class="search_input" placeholder="Search Costway">
+				<span class="search_icon"><i class="fa fa-search"></i></span>
+			</div>
+		</form>
+		<div class="slider">
+			<ul>
+				<li class="slider_item"><a href="##"><img src="images/banner01.jpg" alt=""></a></li>
+			</ul>
+			<div class="slider_controller">
+				<span class="slider_dot on"></span>
+				<span class="slider_dot"></span>
+				<span class="slider_dot"></span>
+				<span class="slider_dot"></span>
+				<span class="slider_dot"></span>
+			</div>
+		</div>
+		<nav>
+			<div class="nav_header">
+				<div class="nav_title">
+					<span class="categories_icon"></span>
+					All Categories
+					<span class="more_categories"><i class="fa fa-angle-right"></i></span>
+				</div>
+			</div>
+			<div class="nav_content">
+				<div class="categories_list">
+					<div class="categories_item normal"><a href="##"><img src="images/home-link.jpg" alt=""></a></div>
+					<div class="categories_item normal"><a href="##"><img src="images/furniture-link.jpg" alt=""></a></div>
+					<div class="categories_item normal"><a href="##"><img src="images/outdoor-link.jpg" alt=""></a></div>
+					<div class="categories_item normal"><a href="##"><img src="images/hardware-link.jpg" alt=""></a></div>
+				</div>
+				<div class="categories_list">
+					<div class="categories_item pop"><a href="##"><img src="images/arrival-link.jpg" alt=""></a></div>
+					<div class="categories_item pop"><a href="##"><img src="images/selling-link.jpg" alt=""></a></div>
+					<div class="categories_item pop"><a href="##"><img src="images/discounted-link.jpg" alt=""></a></div>
+				</div>
+			</div>
+		</nav>
+		<div class="recommend">
+			<div class="recommend_header">
+				<div class="recommend_title">
+					<span class="pop_icon"></span>
+					Weekly Offer
+				</div>
+			</div>
+			<div class="recommend_content">
+				<div class="content_list">
+					<a href="##">
+						<img src="images/product01.jpg" alt="">
+						<div class="product_info">
+							<p class="product_name">3 PCS Beer Table Bench Set Folding Wooden...</p>
+							<p class="price">
+								<span class="now_price">$99.95</span>
+								<span class="old_price">$124.99</span>
+							</p>
+						</div>
+					</a>
+				</div>
+				<div class="content_list">
+					<a href="##">
+						<img src="images/product01.jpg" alt="">
+						<div class="product_info">
+							<p class="product_name">3 PCS Beer Table Bench Set Folding Wooden...</p>
+							<p class="price">
+								<span class="now_price">$99.95</span>
+								<span class="old_price">$124.99</span>
+							</p>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="recommend">
+			<div class="recommend_header">
+				<div class="recommend_title">
+					<span class="pop_icon"></span>
+					Monthly Offer
+				</div>
+			</div>
+			<div class="recommend_content">
+				<div class="content_list">
+					<a href="##">
+						<img src="images/product01.jpg" alt="">
+						<div class="product_info">
+							<p class="product_name">3 PCS Beer Table Bench Set Folding Wooden...</p>
+							<p class="price">
+								<span class="now_price">$99.95</span>
+								<span class="old_price">$124.99</span>
+							</p>
+						</div>
+					</a>
+				</div>
+				<div class="content_list">
+					<a href="##">
+						<img src="images/product01.jpg" alt="">
+						<div class="product_info">
+							<p class="product_name">3 PCS Beer Table Bench Set Folding Wooden...</p>
+							<p class="price">
+								<span class="now_price">$99.95</span>
+								<span class="old_price">$124.99</span>
+							</p>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
